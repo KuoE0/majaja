@@ -4868,7 +4868,7 @@
 	exports.push([module.id, "@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);", ""]);
 
 	// module
-	exports.push([module.id, ".dashboard {\n  padding: 3% 0 0 0;\n  text-align: center;\n}\n\n.board {\n  display: inline-block;\n  text-align: left;\n  margin: auto;\n}\n", ""]);
+	exports.push([module.id, ".container {\n  width: 100%;\n  height: 100%;\n  text-align: center;\n}\n\n.board {\n  display: inline-block;\n  padding: 3% 0 0 0;\n  text-align: left;\n  margin: auto;\n}\n\n.store {\n  display: flex;\n  flex-flow: row;\n}\n\n.list {\n  width: 150px;\n}\n\n.store-page {\n  flex: 1;\n  position: relative;\n}\n\n.store-tool {\n  position: relative;\n  padding: 0 0 15px 0;\n}\n\n.label {\n  color: #e0e0e0;\n  padding: 8px;\n  margin-bottom: 0;\n  font-size: 14px;\n  line-height: 20px;\n  letter-spacing: 0;\n  text-transform: uppercase;\n  font-weight: 200;\n}\n\n.searchbar {\n  padding: 8px;\n  letter-spacing: 2;\n}\n\n.search-list {\n  height: 100%;\n}\n", ""]);
 
 	// exports
 
@@ -26015,22 +26015,19 @@
 
 	var _dashboardJs2 = _interopRequireDefault(_dashboardJs);
 
-	var _orderJs = __webpack_require__(491);
-
-	var _orderJs2 = _interopRequireDefault(_orderJs);
-
-	var _storeJs = __webpack_require__(492);
+	var _storeJs = __webpack_require__(491);
 
 	var _storeJs2 = _interopRequireDefault(_storeJs);
 
-	var _preferenceJs = __webpack_require__(493);
+	var _preferenceJs = __webpack_require__(492);
 
 	var _preferenceJs2 = _interopRequireDefault(_preferenceJs);
 
-	var _logoutJs = __webpack_require__(494);
+	var _logoutJs = __webpack_require__(493);
 
 	var _logoutJs2 = _interopRequireDefault(_logoutJs);
 
+	var Paper = _materialUi2['default'].Paper;
 	var Styles = _materialUi2['default'].Styles;
 	var Tabs = _materialUi2['default'].Tabs;
 	var Tab = _materialUi2['default'].Tab;
@@ -26068,21 +26065,24 @@
 	        null,
 	        _react2['default'].createElement(
 	          Tabs,
-	          { onChange: this._onChange },
+	          null,
 	          _react2['default'].createElement(
 	            Tab,
 	            { label: 'Dashboard' },
-	            _react2['default'].createElement(_dashboardJs2['default'], null)
-	          ),
-	          _react2['default'].createElement(
-	            Tab,
-	            { label: 'Order' },
-	            _react2['default'].createElement(_orderJs2['default'], null)
+	            _react2['default'].createElement(
+	              Paper,
+	              { zDepth: 1 },
+	              _react2['default'].createElement(_dashboardJs2['default'], null)
+	            )
 	          ),
 	          _react2['default'].createElement(
 	            Tab,
 	            { label: 'Store' },
-	            _react2['default'].createElement(_storeJs2['default'], null)
+	            _react2['default'].createElement(
+	              Paper,
+	              { zDepth: 1 },
+	              _react2['default'].createElement(_storeJs2['default'], null)
+	            )
 	          ),
 	          _react2['default'].createElement(
 	            Tab,
@@ -45870,10 +45870,22 @@
 	    value: function render() {
 	      return _react2['default'].createElement(
 	        'div',
-	        { className: 'dashboard' },
-	        _react2['default'].createElement(_myOrderList2['default'], null),
-	        _react2['default'].createElement(_inOrderingList2['default'], null),
-	        _react2['default'].createElement(_recommendStores2['default'], null)
+	        { className: 'container' },
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'board' },
+	          _react2['default'].createElement(_myOrderList2['default'], null)
+	        ),
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'board' },
+	          _react2['default'].createElement(_inOrderingList2['default'], null)
+	        ),
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'board' },
+	          _react2['default'].createElement(_recommendStores2['default'], null)
+	        )
 	      );
 	    }
 	  }]);
@@ -45925,7 +45937,6 @@
 	var ListDivider = _materialUi2['default'].ListDivider;
 	var ListItem = _materialUi2['default'].ListItem;
 	var MoreVertIcon = _materialUi2['default'].MoreVertIcon;
-	var Paper = _materialUi2['default'].Paper;
 	var Styles = _materialUi2['default'].Styles;
 	var Colors = Styles.Colors;
 
@@ -45943,48 +45954,44 @@
 	    value: function render() {
 	      return _react2['default'].createElement(
 	        'div',
-	        { className: 'board' },
+	        null,
 	        _react2['default'].createElement(
 	          _mobileTearSheet2['default'],
 	          null,
 	          _react2['default'].createElement(
-	            Paper,
-	            { zDepth: 1 },
-	            _react2['default'].createElement(
-	              List,
-	              { subheader: 'My ordered' },
-	              _react2['default'].createElement(ListItem, {
-	                leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
-	                primaryText: '08/06 (星期四) Mon. 丁媽 虱目魚店',
-	                secondaryText: _react2['default'].createElement(
-	                  'p',
-	                  null,
-	                  _react2['default'].createElement(
-	                    'span',
-	                    { style: { color: Colors.darkBlack } },
-	                    '香煎魚肚飯'
-	                  ),
-	                  _react2['default'].createElement('br', null),
-	                  '數量：1 售價：$100'
+	            List,
+	            { subheader: 'My ordered' },
+	            _react2['default'].createElement(ListItem, {
+	              leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
+	              primaryText: '08/06 (星期四) Mon. 丁媽 虱目魚店',
+	              secondaryText: _react2['default'].createElement(
+	                'p',
+	                null,
+	                _react2['default'].createElement(
+	                  'span',
+	                  { style: { color: Colors.darkBlack } },
+	                  '香煎魚肚飯'
 	                ),
-	                secondaryTextLines: 2 }),
-	              _react2['default'].createElement(ListDivider, { inset: true }),
-	              _react2['default'].createElement(ListItem, {
-	                leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
-	                primaryText: '08/04 (星期二) Thu. 好鄉',
-	                secondaryText: _react2['default'].createElement(
-	                  'p',
-	                  null,
-	                  _react2['default'].createElement(
-	                    'span',
-	                    { style: { color: Colors.darkBlack } },
-	                    '鮭魚飯'
-	                  ),
-	                  _react2['default'].createElement('br', null),
-	                  '數量：1 售價：$80'
+	                _react2['default'].createElement('br', null),
+	                '數量：1 售價：$100'
+	              ),
+	              secondaryTextLines: 2 }),
+	            _react2['default'].createElement(ListDivider, { inset: true }),
+	            _react2['default'].createElement(ListItem, {
+	              leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
+	              primaryText: '08/04 (星期二) Thu. 好鄉',
+	              secondaryText: _react2['default'].createElement(
+	                'p',
+	                null,
+	                _react2['default'].createElement(
+	                  'span',
+	                  { style: { color: Colors.darkBlack } },
+	                  '鮭魚飯'
 	                ),
-	                secondaryTextLines: 2 })
-	            )
+	                _react2['default'].createElement('br', null),
+	                '數量：1 售價：$80'
+	              ),
+	              secondaryTextLines: 2 })
 	          )
 	        )
 	      );
@@ -46154,7 +46161,6 @@
 	var ListItem = _materialUi2['default'].ListItem;
 	var MenuItem = _materialUi2['default'].MenuItem;
 	var MoreVertIcon = _materialUi2['default'].MoreVertIcon;
-	var Paper = _materialUi2['default'].Paper;
 	var Styles = _materialUi2['default'].Styles;
 	var Colors = Styles.Colors;
 
@@ -46172,63 +46178,60 @@
 	    value: function render() {
 	      return _react2['default'].createElement(
 	        'div',
-	        { className: 'board' },
+	        null,
 	        _react2['default'].createElement(
 	          _mobileTearSheet2['default'],
 	          null,
 	          _react2['default'].createElement(
-	            Paper,
-	            { zDepth: 1 },
-	            _react2['default'].createElement(
-	              List,
-	              { subheader: 'In ordering' },
-	              _react2['default'].createElement(ListItem, {
-	                leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
-	                primaryText: '08/09 (星期一) Mon. 漢堡王',
-	                secondaryText: _react2['default'].createElement(
-	                  'p',
-	                  null,
-	                  _react2['default'].createElement(
-	                    'span',
-	                    { style: { color: Colors.darkBlack } },
-	                    '中午供餐'
-	                  ),
-	                  _react2['default'].createElement('br', null),
-	                  '還有 33 小時 25 分鐘截止'
+	            List,
+	            { subheader: 'In ordering' },
+	            _react2['default'].createElement(ListItem, {
+	              leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
+	              primaryText: '08/09 (星期一) Mon. 漢堡王',
+	              secondaryText: _react2['default'].createElement(
+	                'p',
+	                null,
+	                _react2['default'].createElement(
+	                  'span',
+	                  { style: { color: Colors.darkBlack } },
+	                  '中午供餐'
 	                ),
-	                secondaryTextLines: 2 }),
-	              _react2['default'].createElement(ListDivider, { inset: true }),
-	              _react2['default'].createElement(ListItem, {
-	                leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
-	                primaryText: '08/08 (星期日) Sun. 繼光香香雞',
-	                secondaryText: _react2['default'].createElement(
-	                  'p',
-	                  null,
-	                  _react2['default'].createElement(
-	                    'span',
-	                    { style: { color: Colors.darkBlack } },
-	                    '大哥請客'
-	                  ),
-	                  _react2['default'].createElement('br', null),
-	                  '還有 10 小時 40 分鐘截止'
+	                _react2['default'].createElement('br', null),
+	                '還有 33 小時 25 分鐘截止'
+	              ),
+	              secondaryTextLines: 2 }),
+	            _react2['default'].createElement(ListDivider, { inset: true }),
+	            _react2['default'].createElement(ListItem, {
+	              leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
+	              primaryText: '08/08 (星期日) Sun. 繼光香香雞',
+	              secondaryText: _react2['default'].createElement(
+	                'p',
+	                null,
+	                _react2['default'].createElement(
+	                  'span',
+	                  { style: { color: Colors.darkBlack } },
+	                  '大哥請客'
 	                ),
-	                secondaryTextLines: 2 }),
-	              _react2['default'].createElement(ListItem, {
-	                leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
-	                primaryText: '08/11 (星期三) Wed. 茶湯會',
-	                secondaryText: _react2['default'].createElement(
-	                  'p',
-	                  null,
-	                  _react2['default'].createElement(
-	                    'span',
-	                    { style: { color: Colors.darkBlack } },
-	                    '周年慶'
-	                  ),
-	                  _react2['default'].createElement('br', null),
-	                  '還有 78 小時 40 分鐘截止'
+	                _react2['default'].createElement('br', null),
+	                '還有 10 小時 40 分鐘截止'
+	              ),
+	              secondaryTextLines: 2 }),
+	            _react2['default'].createElement(ListDivider, { inset: true }),
+	            _react2['default'].createElement(ListItem, {
+	              leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
+	              primaryText: '08/11 (星期三) Wed. 茶湯會',
+	              secondaryText: _react2['default'].createElement(
+	                'p',
+	                null,
+	                _react2['default'].createElement(
+	                  'span',
+	                  { style: { color: Colors.darkBlack } },
+	                  '周年慶'
 	                ),
-	                secondaryTextLines: 2 })
-	            )
+	                _react2['default'].createElement('br', null),
+	                '還有 78 小時 40 分鐘截止'
+	              ),
+	              secondaryTextLines: 2 })
 	          )
 	        )
 	      );
@@ -46285,7 +46288,6 @@
 	var ListItem = _materialUi2['default'].ListItem;
 	var MenuItem = _materialUi2['default'].MenuItem;
 	var MoreVertIcon = _materialUi2['default'].MoreVertIcon;
-	var Paper = _materialUi2['default'].Paper;
 	var Styles = _materialUi2['default'].Styles;
 	var Colors = Styles.Colors;
 
@@ -46303,63 +46305,60 @@
 	    value: function render() {
 	      return _react2['default'].createElement(
 	        'div',
-	        { className: 'board' },
+	        null,
 	        _react2['default'].createElement(
 	          _mobileTearSheet2['default'],
 	          null,
 	          _react2['default'].createElement(
-	            Paper,
-	            { zDepth: 1 },
-	            _react2['default'].createElement(
-	              List,
-	              { subheader: 'Recommend stores' },
-	              _react2['default'].createElement(ListItem, {
-	                leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
-	                primaryText: '麥當勞 信義店',
-	                secondaryText: _react2['default'].createElement(
-	                  'p',
-	                  null,
-	                  _react2['default'].createElement(
-	                    'span',
-	                    { style: { color: Colors.darkBlack } },
-	                    '(02) 2641-1332'
-	                  ),
-	                  _react2['default'].createElement('br', null),
-	                  '24 小時內皆可訂購'
+	            List,
+	            { subheader: 'Recommend stores' },
+	            _react2['default'].createElement(ListItem, {
+	              leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
+	              primaryText: '麥當勞 信義店',
+	              secondaryText: _react2['default'].createElement(
+	                'p',
+	                null,
+	                _react2['default'].createElement(
+	                  'span',
+	                  { style: { color: Colors.darkBlack } },
+	                  '(02) 2641-1332'
 	                ),
-	                secondaryTextLines: 2 }),
-	              _react2['default'].createElement(ListDivider, { inset: true }),
-	              _react2['default'].createElement(ListItem, {
-	                leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
-	                primaryText: '黃媽媽私房雞肉',
-	                secondaryText: _react2['default'].createElement(
-	                  'p',
-	                  null,
-	                  _react2['default'].createElement(
-	                    'span',
-	                    { style: { color: Colors.darkBlack } },
-	                    '0952-156-156'
-	                  ),
-	                  _react2['default'].createElement('br', null),
-	                  '營業時間：11:00 - 20:00'
+	                _react2['default'].createElement('br', null),
+	                '24 小時內皆可訂購'
+	              ),
+	              secondaryTextLines: 2 }),
+	            _react2['default'].createElement(ListDivider, { inset: true }),
+	            _react2['default'].createElement(ListItem, {
+	              leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
+	              primaryText: '黃媽媽私房雞肉',
+	              secondaryText: _react2['default'].createElement(
+	                'p',
+	                null,
+	                _react2['default'].createElement(
+	                  'span',
+	                  { style: { color: Colors.darkBlack } },
+	                  '0952-156-156'
 	                ),
-	                secondaryTextLines: 2 }),
-	              _react2['default'].createElement(ListItem, {
-	                leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
-	                primaryText: '八方雲集 新莊區公園路',
-	                secondaryText: _react2['default'].createElement(
-	                  'p',
-	                  null,
-	                  _react2['default'].createElement(
-	                    'span',
-	                    { style: { color: Colors.darkBlack } },
-	                    '(02) 2299-5353'
-	                  ),
-	                  _react2['default'].createElement('br', null),
-	                  '10:30 前訂購'
+	                _react2['default'].createElement('br', null),
+	                '營業時間：11:00 - 20:00'
+	              ),
+	              secondaryTextLines: 2 }),
+	            _react2['default'].createElement(ListDivider, { inset: true }),
+	            _react2['default'].createElement(ListItem, {
+	              leftAvatar: _react2['default'].createElement(Avatar, { icon: _react2['default'].createElement(_materialUiLibSvgIconsSocialCake2['default'], null) }),
+	              primaryText: '八方雲集 新莊區公園路',
+	              secondaryText: _react2['default'].createElement(
+	                'p',
+	                null,
+	                _react2['default'].createElement(
+	                  'span',
+	                  { style: { color: Colors.darkBlack } },
+	                  '(02) 2299-5353'
 	                ),
-	                secondaryTextLines: 2 })
-	            )
+	                _react2['default'].createElement('br', null),
+	                '10:30 前訂購'
+	              ),
+	              secondaryTextLines: 2 })
 	          )
 	        )
 	      );
@@ -46398,75 +46397,16 @@
 
 	var _materialUi = __webpack_require__(332);
 
-	var ThemeManager = new _materialUi.Styles.ThemeManager();
+	var _materialUi2 = _interopRequireDefault(_materialUi);
 
-	var Order = (function (_React$Component) {
-	  _inherits(Order, _React$Component);
-
-	  function Order(props) {
-	    _classCallCheck(this, Order);
-
-	    _get(Object.getPrototypeOf(Order.prototype), 'constructor', this).call(this, props);
-	  }
-
-	  _createClass(Order, [{
-	    key: 'getChildContext',
-	    value: function getChildContext() {
-	      return {
-	        muiTheme: ThemeManager.getCurrentTheme()
-	      };
-	    }
-	  }, {
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      ThemeManager.setPalette({
-	        accent1Color: _materialUi.Styles.Colors.pink500
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2['default'].createElement('div', null);
-	    }
-	  }]);
-
-	  return Order;
-	})(_react2['default'].Component);
-
-	exports['default'] = Order;
-
-	Order.childContextTypes = {
-	  muiTheme: _react2['default'].PropTypes.object
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 492 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(172);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _materialUi = __webpack_require__(332);
-
-	var ThemeManager = new _materialUi.Styles.ThemeManager();
+	var FlatButton = _materialUi2['default'].FlatButton;
+	var List = _materialUi2['default'].List;
+	var ListDivider = _materialUi2['default'].ListDivider;
+	var ListItem = _materialUi2['default'].ListItem;
+	var Paper = _materialUi2['default'].Paper;
+	var RaisedButton = _materialUi2['default'].RaisedButton;
+	var Table = _materialUi2['default'].Table;
+	var TextField = _materialUi2['default'].TextField;
 
 	var Store = (function (_React$Component) {
 	  _inherits(Store, _React$Component);
@@ -46475,26 +46415,102 @@
 	    _classCallCheck(this, Store);
 
 	    _get(Object.getPrototypeOf(Store.prototype), 'constructor', this).call(this, props);
+
+	    var rowData = [{ name: { content: '楊董燒肉便當店' }, brief: { content: '燒肉，雞腿王，排骨' }, phone: { content: '02-29060925' } }, { name: { content: '太師傅便當專賣店(興中店)' }, brief: { content: '營養便當' }, phone: { content: '07-3345252' } }, { name: { content: '臺灣雞腿王-青海店' }, brief: { content: '主廚推薦：雞腿便當' }, phone: { content: '04-23140169' } }, { name: { content: '池上飯包' }, brief: { content: '滿200元外送' }, phone: { content: '04-6563616' } }, { name: { content: '呆妹の點心舖' }, brief: { content: '多種口味的點心酥/鳳梨酥/蛋黃酥' }, phone: { content: '02-22175266' } }, { name: { content: '富記港式茶餐廳(內科洲子店)' }, brief: { content: '便宜好吃' }, phone: { content: '02-87973006' } }, { name: { content: '一焗兩得' }, brief: { content: '400元外送' }, phone: { content: '02-86671107' } }, { name: { content: '味珍點心坊' }, brief: { content: '各類點心' }, phone: { content: '02-23976086' } }];
+
+	    this.state = {
+	      fixedHeader: true,
+	      fixedFooter: true,
+	      stripedRows: false,
+	      showRowHover: false,
+	      selectable: true,
+	      multiSelectable: true,
+	      canSelectAll: false,
+	      deselectOnClickaway: true,
+	      height: '65%',
+	      rowData: rowData
+	    };
 	  }
 
 	  _createClass(Store, [{
-	    key: 'getChildContext',
-	    value: function getChildContext() {
-	      return {
-	        muiTheme: ThemeManager.getCurrentTheme()
-	      };
-	    }
-	  }, {
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      ThemeManager.setPalette({
-	        accent1Color: _materialUi.Styles.Colors.pink500
-	      });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2['default'].createElement('div', null);
+	      // Column configuration
+	      var headerCols = {
+	        name: {
+	          content: '店家',
+	          tooltip: '店家名稱 / 分店名稱'
+	        },
+	        brief: {
+	          content: '簡介',
+	          tooltip: '店家簡介 / 優惠訊息'
+	        },
+	        phone: {
+	          content: '電話',
+	          tooltip: '聯絡電話 / 店家手機'
+	        }
+	      };
+	      var colOrder = ['name', 'brief', 'phone'];
+
+	      return _react2['default'].createElement(
+	        'div',
+	        { className: 'container' },
+	        _react2['default'].createElement(
+	          'div',
+	          { className: 'store' },
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'list' },
+	            _react2['default'].createElement(
+	              List,
+	              null,
+	              _react2['default'].createElement(ListItem, { primaryText: '瀏覽店家' }),
+	              _react2['default'].createElement(ListItem, { primaryText: '新增店家' }),
+	              _react2['default'].createElement(ListItem, { primaryText: '發起訂單' }),
+	              _react2['default'].createElement(ListItem, { primaryText: '我的最愛' })
+	            )
+	          ),
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'store-page' },
+	            _react2['default'].createElement(
+	              Paper,
+	              { zDepth: 1 },
+	              _react2['default'].createElement(
+	                'div',
+	                { className: 'label' },
+	                '搜尋'
+	              ),
+	              _react2['default'].createElement(
+	                'div',
+	                { className: 'searchbar' },
+	                _react2['default'].createElement(TextField, { hintText: '輸入店家名稱' }),
+	                _react2['default'].createElement(FlatButton, { secondary: true, label: 'Search' })
+	              ),
+	              _react2['default'].createElement('br', null),
+	              _react2['default'].createElement(Table, {
+	                headerColumns: headerCols,
+	                columnOrder: colOrder,
+	                rowData: this.state.rowData,
+	                height: this.state.height,
+	                fixedHeader: this.state.fixedHeader,
+	                fixedFooter: this.state.fixedFooter,
+	                stripedRows: this.state.stripedRows,
+	                showRowHover: this.state.showRowHover,
+	                selectable: this.state.selectable,
+	                multiSelectable: this.state.multiSelectable,
+	                canSelectAll: this.state.canSelectAll,
+	                deselectOnClickaway: this.state.deselectOnClickaway,
+	                onRowSelection: this._onRowSelection }),
+	              _react2['default'].createElement(
+	                'div',
+	                { className: 'store-tool' },
+	                _react2['default'].createElement(RaisedButton, { label: '加入我的最愛', secondary: true })
+	              )
+	            )
+	          )
+	        )
+	      );
 	    }
 	  }]);
 
@@ -46502,14 +46518,10 @@
 	})(_react2['default'].Component);
 
 	exports['default'] = Store;
-
-	Store.childContextTypes = {
-	  muiTheme: _react2['default'].PropTypes.object
-	};
 	module.exports = exports['default'];
 
 /***/ },
-/* 493 */
+/* 492 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46577,7 +46589,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 494 */
+/* 493 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
