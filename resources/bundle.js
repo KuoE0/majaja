@@ -4868,7 +4868,7 @@
 	exports.push([module.id, "@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,500);", ""]);
 
 	// module
-	exports.push([module.id, ".container {\n  width: 100%;\n  height: 100%;\n  text-align: center;\n}\n\n.board {\n  display: inline-block;\n  padding: 3% 0 0 0;\n  text-align: left;\n  margin: auto;\n}\n\n.store {\n  display: flex;\n  flex-flow: row;\n}\n\n.list {\n  width: 150px;\n}\n\n.store-page {\n  flex: 1;\n  position: relative;\n}\n\n.store-tool {\n  position: relative;\n  padding: 0 0 15px 0;\n}\n\n.label {\n  color: #e0e0e0;\n  padding: 8px;\n  margin-bottom: 0;\n  font-size: 14px;\n  line-height: 20px;\n  letter-spacing: 0;\n  text-transform: uppercase;\n  font-weight: 200;\n}\n\n.searchbar {\n  padding: 8px;\n  letter-spacing: 2;\n}\n\n.search-list {\n  height: 100%;\n}\n", ""]);
+	exports.push([module.id, ".container {\n  width: 100%;\n  text-align: center;\n}\n\n.board {\n  display: inline-block;\n  padding: 3% 0 0 0;\n  text-align: left;\n  margin: auto;\n}\n\n.store {\n  display: flex;\n  flex-flow: row;\n}\n\n.list {\n  width: 200px;\n  color: #e0e0e0;\n  font-size: 14px;\n  font-weight: 200;\n}\n\n.store-page {\n  flex: 1;\n}\n\n.store-page .content {\n  padding: 20px;\n}\n\n.store-tool > * {\n  display: block;\n  margin: 0 2% 30px 2%;\n}\n\n.label {\n  color: #4e4e56;\n  margin-bottom: 0;\n  font-size: 14px;\n  line-height: 20px;\n  letter-spacing: 0;\n  text-transform: uppercase;\n  font-weight: 200;\n  padding: 10px 0 10px 0;\n}\n\n.searchbar {\n  padding: 8px;\n  letter-spacing: 2;\n}\n\n.dialog {\n  width: 300px;\n  text-align: center;\n  margin: auto;\n}\n", ""]);
 
 	// exports
 
@@ -26019,11 +26019,11 @@
 
 	var _storeJs2 = _interopRequireDefault(_storeJs);
 
-	var _preferenceJs = __webpack_require__(492);
+	var _preferenceJs = __webpack_require__(494);
 
 	var _preferenceJs2 = _interopRequireDefault(_preferenceJs);
 
-	var _logoutJs = __webpack_require__(493);
+	var _logoutJs = __webpack_require__(495);
 
 	var _logoutJs2 = _interopRequireDefault(_logoutJs);
 
@@ -46399,10 +46399,15 @@
 
 	var _materialUi2 = _interopRequireDefault(_materialUi);
 
+	var _createStore = __webpack_require__(492);
+
+	var _createStore2 = _interopRequireDefault(_createStore);
+
+	var _createOrder = __webpack_require__(493);
+
+	var _createOrder2 = _interopRequireDefault(_createOrder);
+
 	var FlatButton = _materialUi2['default'].FlatButton;
-	var List = _materialUi2['default'].List;
-	var ListDivider = _materialUi2['default'].ListDivider;
-	var ListItem = _materialUi2['default'].ListItem;
 	var Paper = _materialUi2['default'].Paper;
 	var RaisedButton = _materialUi2['default'].RaisedButton;
 	var Table = _materialUi2['default'].Table;
@@ -46430,9 +46435,26 @@
 	      height: '65%',
 	      rowData: rowData
 	    };
+
+	    this._handleCreateStore = this._handleCreateStore.bind(this);
+	    this._handleCreateOrder = this._handleCreateOrder.bind(this);
+	    this._handleAddFavorite = this._handleAddFavorite.bind(this);
 	  }
 
 	  _createClass(Store, [{
+	    key: '_handleCreateStore',
+	    value: function _handleCreateStore() {
+	      this.refs.createStore.show();
+	    }
+	  }, {
+	    key: '_handleCreateOrder',
+	    value: function _handleCreateOrder() {
+	      this.refs.createOrder.show();
+	    }
+	  }, {
+	    key: '_handleAddFavorite',
+	    value: function _handleAddFavorite() {}
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      // Column configuration
@@ -46460,52 +46482,51 @@
 	          { className: 'store' },
 	          _react2['default'].createElement(
 	            'div',
-	            { className: 'list' },
-	            _react2['default'].createElement(
-	              List,
-	              null,
-	              _react2['default'].createElement(ListItem, { primaryText: '瀏覽店家' }),
-	              _react2['default'].createElement(ListItem, { primaryText: '新增店家' }),
-	              _react2['default'].createElement(ListItem, { primaryText: '發起訂單' }),
-	              _react2['default'].createElement(ListItem, { primaryText: '我的最愛' })
-	            )
-	          ),
-	          _react2['default'].createElement(
-	            'div',
 	            { className: 'store-page' },
 	            _react2['default'].createElement(
 	              Paper,
 	              { zDepth: 1 },
 	              _react2['default'].createElement(
 	                'div',
-	                { className: 'label' },
-	                '搜尋'
-	              ),
-	              _react2['default'].createElement(
-	                'div',
-	                { className: 'searchbar' },
-	                _react2['default'].createElement(TextField, { hintText: '輸入店家名稱' }),
-	                _react2['default'].createElement(FlatButton, { secondary: true, label: 'Search' })
-	              ),
-	              _react2['default'].createElement('br', null),
-	              _react2['default'].createElement(Table, {
-	                headerColumns: headerCols,
-	                columnOrder: colOrder,
-	                rowData: this.state.rowData,
-	                height: this.state.height,
-	                fixedHeader: this.state.fixedHeader,
-	                fixedFooter: this.state.fixedFooter,
-	                stripedRows: this.state.stripedRows,
-	                showRowHover: this.state.showRowHover,
-	                selectable: this.state.selectable,
-	                multiSelectable: this.state.multiSelectable,
-	                canSelectAll: this.state.canSelectAll,
-	                deselectOnClickaway: this.state.deselectOnClickaway,
-	                onRowSelection: this._onRowSelection }),
-	              _react2['default'].createElement(
-	                'div',
-	                { className: 'store-tool' },
-	                _react2['default'].createElement(RaisedButton, { label: '加入我的最愛', secondary: true })
+	                { className: 'content' },
+	                _react2['default'].createElement(
+	                  'div',
+	                  { className: 'searchbar' },
+	                  _react2['default'].createElement(TextField, { hintText: '輸入店家名稱' }),
+	                  _react2['default'].createElement(FlatButton, { secondary: true, label: 'Search' })
+	                ),
+	                _react2['default'].createElement('br', null),
+	                _react2['default'].createElement(Table, {
+	                  headerColumns: headerCols,
+	                  columnOrder: colOrder,
+	                  rowData: this.state.rowData,
+	                  height: this.state.height,
+	                  fixedHeader: this.state.fixedHeader,
+	                  fixedFooter: this.state.fixedFooter,
+	                  stripedRows: this.state.stripedRows,
+	                  showRowHover: this.state.showRowHover,
+	                  selectable: this.state.selectable,
+	                  multiSelectable: this.state.multiSelectable,
+	                  canSelectAll: this.state.canSelectAll,
+	                  deselectOnClickaway: this.state.deselectOnClickaway,
+	                  onRowSelection: this._onRowSelection }),
+	                _react2['default'].createElement(
+	                  'div',
+	                  { className: 'store-tool' },
+	                  _react2['default'].createElement(RaisedButton, {
+	                    label: '新增店家',
+	                    onTouchTap: this._handleCreateStore }),
+	                  _react2['default'].createElement(RaisedButton, {
+	                    label: '新增訂單',
+	                    secondary: true,
+	                    onTouchTap: this._handleCreateOrder }),
+	                  _react2['default'].createElement(RaisedButton, {
+	                    label: '加入我的最愛',
+	                    secondary: true,
+	                    onTouchTap: this._handleAddFavorite }),
+	                  _react2['default'].createElement(_createStore2['default'], { ref: 'createStore' }),
+	                  _react2['default'].createElement(_createOrder2['default'], { ref: 'createOrder' })
+	                )
 	              )
 	            )
 	          )
@@ -46522,6 +46543,277 @@
 
 /***/ },
 /* 492 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(172);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _materialUi = __webpack_require__(332);
+
+	var _materialUi2 = _interopRequireDefault(_materialUi);
+
+	var Checkbox = _materialUi2['default'].Checkbox;
+	var FlatButton = _materialUi2['default'].FlatButton;
+	var Dialog = _materialUi2['default'].Dialog;
+	var RaisedButton = _materialUi2['default'].RaisedButton;
+	var TextField = _materialUi2['default'].TextField;
+
+	var CreateStore = (function (_React$Component) {
+	  _inherits(CreateStore, _React$Component);
+
+	  function CreateStore(props) {
+	    _classCallCheck(this, CreateStore);
+
+	    _get(Object.getPrototypeOf(CreateStore.prototype), 'constructor', this).call(this, props);
+
+	    this._handleCancel = this._handleCancel.bind(this);
+	    this._handleSubmit = this._handleSubmit.bind(this);
+	  }
+
+	  _createClass(CreateStore, [{
+	    key: 'show',
+	    value: function show() {
+	      this.refs.createStoreDialog.show();
+	    }
+	  }, {
+	    key: '_handleCancel',
+	    value: function _handleCancel() {
+	      this.refs.createStoreDialog.dismiss();
+	    }
+	  }, {
+	    key: '_handleSubmit',
+	    value: function _handleSubmit() {}
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var actions = [_react2['default'].createElement(FlatButton, {
+	        key: 1,
+	        label: '取消',
+	        secondary: true,
+	        onTouchTap: this._handleCancel }), _react2['default'].createElement(FlatButton, {
+	        key: 2,
+	        label: '新增',
+	        primary: true,
+	        onTouchTap: this._handleSubmit })];
+
+	      var styles = {
+	        imageInput: {
+	          cursor: 'pointer',
+	          position: 'absolute',
+	          top: '0',
+	          bottom: '0',
+	          right: '0',
+	          left: '0',
+	          width: '100%',
+	          opacity: '0'
+	        },
+	        typesCheckbox: {}
+	      };
+
+	      return _react2['default'].createElement(
+	        'div',
+	        { className: 'container' },
+	        _react2['default'].createElement(
+	          Dialog,
+	          {
+	            ref: 'createStoreDialog',
+	            title: '新增店家資訊',
+	            actions: actions,
+	            autoDetectWindowHeight: true,
+	            autoScrollBodyContent: true },
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'dialog' },
+	            _react2['default'].createElement(
+	              'div',
+	              { className: 'label' },
+	              '基本資料'
+	            ),
+	            _react2['default'].createElement(TextField, { floatingLabelText: '名稱' }),
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement(TextField, { floatingLabelText: '簡介' }),
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement(TextField, { floatingLabelText: '電話' }),
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement(TextField, { floatingLabelText: '地址' }),
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement(TextField, { floatingLabelText: '網址' }),
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement(TextField, { style: { 'text-align': 'left' },
+	              floatingLabelText: '訂購說明',
+	              multiLine: true }),
+	            _react2['default'].createElement('br', null),
+	            _react2['default'].createElement(
+	              'div',
+	              { className: '' },
+	              _react2['default'].createElement(
+	                'div',
+	                { className: 'label' },
+	                '服務種類'
+	              ),
+	              _react2['default'].createElement(Checkbox, {
+	                style: styles.typesCheckbox,
+	                name: 'bendon',
+	                value: 'bednon',
+	                label: '便當' }),
+	              _react2['default'].createElement(Checkbox, {
+	                style: styles.typesCheckbox,
+	                name: 'noodle',
+	                value: 'noodle',
+	                label: '麵食' }),
+	              _react2['default'].createElement(Checkbox, {
+	                style: styles.typesCheckbox,
+	                name: 'vegetarian',
+	                value: 'vegetarian',
+	                label: '素食' }),
+	              _react2['default'].createElement(Checkbox, {
+	                style: styles.typesCheckbox,
+	                name: 'drink',
+	                value: 'drink',
+	                label: '飲料' }),
+	              _react2['default'].createElement(Checkbox, {
+	                style: styles.typesCheckbox,
+	                name: 'cold',
+	                value: 'cold',
+	                label: '冰品' }),
+	              _react2['default'].createElement(Checkbox, {
+	                style: styles.typesCheckbox,
+	                name: 'snack',
+	                value: 'snack',
+	                label: '小吃' })
+	            ),
+	            _react2['default'].createElement(
+	              'div',
+	              { className: 'label' },
+	              '圖片上傳'
+	            ),
+	            _react2['default'].createElement(
+	              RaisedButton,
+	              { primary: true, label: '選擇上傳圖片' },
+	              _react2['default'].createElement('input', { type: 'file', style: styles.imageInput })
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return CreateStore;
+	})(_react2['default'].Component);
+
+	exports['default'] = CreateStore;
+	module.exports = exports['default'];
+
+/***/ },
+/* 493 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(172);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _materialUi = __webpack_require__(332);
+
+	var _materialUi2 = _interopRequireDefault(_materialUi);
+
+	var FlatButton = _materialUi2['default'].FlatButton;
+	var Dialog = _materialUi2['default'].Dialog;
+
+	var CreateOrder = (function (_React$Component) {
+	  _inherits(CreateOrder, _React$Component);
+
+	  function CreateOrder(props) {
+	    _classCallCheck(this, CreateOrder);
+
+	    _get(Object.getPrototypeOf(CreateOrder.prototype), 'constructor', this).call(this, props);
+
+	    this._handleCancel = this._handleCancel.bind(this);
+	    this._handleSubmit = this._handleSubmit.bind(this);
+	  }
+
+	  _createClass(CreateOrder, [{
+	    key: 'show',
+	    value: function show() {
+	      this.refs.createOrderDialog.show();
+	    }
+	  }, {
+	    key: '_handleCancel',
+	    value: function _handleCancel() {
+	      this.refs.createOrderDialog.dismiss();
+	    }
+	  }, {
+	    key: '_handleSubmit',
+	    value: function _handleSubmit() {}
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var actions = [_react2['default'].createElement(FlatButton, {
+	        key: 1,
+	        label: '取消',
+	        secondary: true,
+	        onTouchTap: this._handleCancel }), _react2['default'].createElement(FlatButton, {
+	        key: 2,
+	        label: '新增',
+	        primary: true,
+	        onTouchTap: this._handleSubmit })];
+
+	      return _react2['default'].createElement(
+	        'div',
+	        null,
+	        _react2['default'].createElement(
+	          Dialog,
+	          { title: '新增訂單',
+	            ref: 'createOrderDialog',
+	            actions: actions,
+	            autoDetectWindowHeight: true,
+	            autoScrollBodyContent: true },
+	          _react2['default'].createElement('div', { style: { height: '400px' } })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return CreateOrder;
+	})(_react2['default'].Component);
+
+	exports['default'] = CreateOrder;
+	module.exports = exports['default'];
+
+/***/ },
+/* 494 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46589,7 +46881,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 493 */
+/* 495 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
