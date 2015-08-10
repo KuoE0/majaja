@@ -46424,12 +46424,15 @@
 	    var rowData = [{ name: { content: '楊董燒肉便當店' }, brief: { content: '燒肉，雞腿王，排骨' }, phone: { content: '02-29060925' } }, { name: { content: '太師傅便當專賣店(興中店)' }, brief: { content: '營養便當' }, phone: { content: '07-3345252' } }, { name: { content: '臺灣雞腿王-青海店' }, brief: { content: '主廚推薦：雞腿便當' }, phone: { content: '04-23140169' } }, { name: { content: '池上飯包' }, brief: { content: '滿200元外送' }, phone: { content: '04-6563616' } }, { name: { content: '呆妹の點心舖' }, brief: { content: '多種口味的點心酥/鳳梨酥/蛋黃酥' }, phone: { content: '02-22175266' } }, { name: { content: '富記港式茶餐廳(內科洲子店)' }, brief: { content: '便宜好吃' }, phone: { content: '02-87973006' } }, { name: { content: '一焗兩得' }, brief: { content: '400元外送' }, phone: { content: '02-86671107' } }, { name: { content: '味珍點心坊' }, brief: { content: '各類點心' }, phone: { content: '02-23976086' } }];
 
 	    this.state = {
-	      rowData: rowData
+	      orderDisable: true,
+	      rowData: rowData,
+	      selectedIndex: undefined
 	    };
 
 	    this._handleCreateStore = this._handleCreateStore.bind(this);
 	    this._handleCreateOrder = this._handleCreateOrder.bind(this);
 	    this._handleAddFavorite = this._handleAddFavorite.bind(this);
+	    this._onRowSelection = this._onRowSelection.bind(this);
 	  }
 
 	  _createClass(Store, [{
@@ -46445,6 +46448,14 @@
 	  }, {
 	    key: '_handleAddFavorite',
 	    value: function _handleAddFavorite() {}
+	  }, {
+	    key: '_onRowSelection',
+	    value: function _onRowSelection(selectedRows) {
+	      this.setState({
+	        orderDisable: !selectedRows.length,
+	        selectedIndex: selectedRows[0]
+	      });
+	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -46464,6 +46475,7 @@
 	        }
 	      };
 	      var colOrder = ['name', 'brief', 'phone'];
+	      var storeName = this.state.selectedIndex ? this.state.rowData[this.state.selectedIndex].name.content : '';
 
 	      return _react2['default'].createElement(
 	        'div',
@@ -46492,6 +46504,8 @@
 	                  columnOrder: colOrder,
 	                  rowData: this.state.rowData,
 	                  height: '65%',
+	                  selectable: this.state.selectable,
+	                  deselectOnClickaway: false,
 	                  onRowSelection: this._onRowSelection }),
 	                _react2['default'].createElement(
 	                  'div',
@@ -46500,11 +46514,13 @@
 	                    label: '新增店家',
 	                    onTouchTap: this._handleCreateStore }),
 	                  _react2['default'].createElement(RaisedButton, {
-	                    label: '新增訂單',
+	                    label: '開始訂購',
 	                    secondary: true,
+	                    disabled: this.state.orderDisable,
 	                    onTouchTap: this._handleCreateOrder }),
 	                  _react2['default'].createElement(_createStore2['default'], { ref: 'createStore' }),
-	                  _react2['default'].createElement(_createOrder2['default'], { ref: 'createOrder' })
+	                  _react2['default'].createElement(_createOrder2['default'], { ref: 'createOrder',
+	                    storeName: storeName })
 	                )
 	              )
 	            )
@@ -46641,7 +46657,7 @@
 	            _react2['default'].createElement('br', null),
 	            _react2['default'].createElement(
 	              'div',
-	              { className: '' },
+	              null,
 	              _react2['default'].createElement(
 	                'div',
 	                { className: 'label' },
@@ -46678,6 +46694,7 @@
 	                value: 'snack',
 	                label: '小吃' })
 	            ),
+	            _react2['default'].createElement('br', null),
 	            _react2['default'].createElement(
 	              'div',
 	              { className: 'label' },
@@ -46729,7 +46746,10 @@
 	var _materialUi2 = _interopRequireDefault(_materialUi);
 
 	var FlatButton = _materialUi2['default'].FlatButton;
+	var DatePicker = _materialUi2['default'].DatePicker;
 	var Dialog = _materialUi2['default'].Dialog;
+	var TextField = _materialUi2['default'].TextField;
+	var TimePicker = _materialUi2['default'].TimePicker;
 
 	var CreateOrder = (function (_React$Component) {
 	  _inherits(CreateOrder, _React$Component);
@@ -46765,7 +46785,7 @@
 	        secondary: true,
 	        onTouchTap: this._handleCancel }), _react2['default'].createElement(FlatButton, {
 	        key: 2,
-	        label: '新增',
+	        label: '訂購',
 	        primary: true,
 	        onTouchTap: this._handleSubmit })];
 
@@ -46774,12 +46794,20 @@
 	        null,
 	        _react2['default'].createElement(
 	          Dialog,
-	          { title: '新增訂單',
+	          { title: '開始訂購 ' + this.props.storeName,
 	            ref: 'createOrderDialog',
 	            actions: actions,
 	            autoDetectWindowHeight: true,
 	            autoScrollBodyContent: true },
-	          _react2['default'].createElement('div', { style: { height: '400px' } })
+	          _react2['default'].createElement(
+	            'div',
+	            { className: 'dialog' },
+	            _react2['default'].createElement(DatePicker, { hintText: '截止日期', mode: 'landscape' }),
+	            _react2['default'].createElement(TimePicker, { hintText: '截止時間', format: 'ampm' }),
+	            _react2['default'].createElement(TextField, { style: { 'text-align': 'left' },
+	              floatingLabelText: '公告事項',
+	              multiLine: true })
+	          )
 	        )
 	      );
 	    }
